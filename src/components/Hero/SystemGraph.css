@@ -1,0 +1,67 @@
+.system-graph {
+  flex-shrink: 0;
+}
+
+.system-graph__svg {
+  overflow: visible;
+}
+
+.system-graph__edge {
+  stroke: var(--border);
+  stroke-width: 1;
+  transition: stroke var(--duration-base) var(--ease);
+}
+
+.system-graph__edge--active {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+
+.system-graph__node {
+  fill: var(--surface);
+  stroke: var(--border);
+  stroke-width: 1;
+  transition: all var(--duration-base) var(--ease);
+}
+
+.system-graph__node--active {
+  fill: var(--accent-dim);
+  stroke: var(--accent);
+}
+
+.system-graph__node--stack {
+  /* default */
+}
+
+.system-graph__node--ai {
+  /* slightly different passive look */
+}
+
+.system-graph__label {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 500;
+  fill: var(--text-tertiary);
+  letter-spacing: 0.04em;
+  transition: fill var(--duration-base) var(--ease);
+  pointer-events: none;
+}
+
+.system-graph__label--active {
+  fill: var(--accent);
+}
+
+.system-graph__branch-label {
+  font-family: var(--font-mono);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  fill: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+  .system-graph {
+    display: none;
+  }
+}

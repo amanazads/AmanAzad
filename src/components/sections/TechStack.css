@@ -1,0 +1,100 @@
+.stack-section {
+  border-top: 1px solid var(--border);
+}
+
+.stack-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-8) 0 var(--space-8);
+}
+
+.stack-filter {
+  height: 28px;
+  padding: 0 var(--space-3);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease);
+  letter-spacing: 0.03em;
+}
+
+.stack-filter:hover {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.stack-filter--active {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--bg);
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.stack-category {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  opacity: 0;
+  transition: border-color var(--duration-base) var(--ease);
+}
+
+.stack-grid--visible .stack-category {
+  animation: fadeUp 0.5s var(--delay, 0ms) var(--ease) both;
+}
+
+.stack-category:hover {
+  border-color: var(--text-tertiary);
+}
+
+.stack-category__header {
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.stack-category__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.stack-item {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 var(--space-2);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  transition: all var(--duration-fast) var(--ease);
+  white-space: nowrap;
+}
+
+.stack-item:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+@media (max-width: 600px) {
+  .stack-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
