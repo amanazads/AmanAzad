@@ -1,28 +1,23 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ success: false, error: 'Method Not Allowed' });
+  }
 
-const app = express();
-const PORT = process.env.PORT || 3001;
-
-app.use(cors());
-app.use(express.json());
-
-// Serve static frontend in production
-app.use(express.static(path.join(__dirname, 'dist')));
-
-// First-party /api/contact endpoint
-app.post('/api/contact', async (req, res) => {
   try {
-    const { name, email, message } = req.body;
+    let body = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch {
+        body = {};
+      }
+    }
+    const { name, email, message } = body || {};
 
     if (!name || !email || !message) {
       return res.status(400).json({ success: false, error: 'Name, email, and message are required.' });
@@ -33,10 +28,10 @@ app.post('/api/contact', async (req, res) => {
     const receiverEmail = process.env.RECEIVER_EMAIL || 'azadaman1apl@gmail.com';
 
     if (!senderPass) {
-      console.error('❌ [Contact API] EMAIL_PASS not set in environment.');
+      console.error('⚠️ [Contact API] EMAIL_PASS environment variable is missing on Vercel.');
       return res.status(500).json({
         success: false,
-        error: 'EMAIL_PASS is not configured in .env'
+        error: 'Email service is not configured on the server. Please add EMAIL_PASS to Vercel Environment Variables.'
       });
     }
 
@@ -63,7 +58,7 @@ app.post('/api/contact', async (req, res) => {
             <p style="margin: 0; white-space: pre-wrap; color: #333333; line-height: 1.6;">${message}</p>
           </div>
           <hr style="margin-top: 24px; border: none; border-top: 1px solid #e4e3df;" />
-          <p style="font-size: 12px; color: #8a8a87; margin-bottom: 0;">Sent directly from your personal portfolio server.</p>
+          <p style="font-size: 12px; color: #8a8a87; margin-bottom: 0;">Sent directly from your personal portfolio.</p>
         </div>
       `,
     };
@@ -71,16 +66,7 @@ app.post('/api/contact', async (req, res) => {
     await transporter.sendMail(mailOptions);
     return res.status(200).json({ success: true, message: 'Email sent successfully!' });
   } catch (error) {
-    console.error('[Server Mail Error]:', error);
-    return res.status(500).json({ success: false, error: error.message || 'Failed to send email.' });
+    console.error('[Contact API Error]:', error);
+    return res.status(500).json({ success: false, error: error.message || 'Failed to send email' });
   }
-});
-
-// Fallback for SPA routing
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
-
-app.listen(PORT, () => {
-  console.log(`Portfolio server running on http://localhost:${PORT}`);
-});
+}

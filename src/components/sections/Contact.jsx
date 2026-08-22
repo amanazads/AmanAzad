@@ -48,18 +48,31 @@ export default function Contact() {
         }),
       });
 
-      const data = await res.json();
+      let data = null;
+      try {
+        const text = await res.text();
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        data = null;
+      }
 
-      if (res.ok && data.success) {
+      if (res.ok && data?.success) {
         setStatus(STATUS.SUCCESS);
         setForm({ from_name: '', from_email: '', message: '' });
         setTimeout(() => setStatus(STATUS.IDLE), 6000);
       } else {
-        throw new Error(data.error || data.message || 'Submission failed');
+        const errorDetail = 
+          (typeof data?.error === 'string' ? data.error : '') ||
+          (typeof data?.message === 'string' ? data.message : '') ||
+          (res.status === 404 ? 'Contact API endpoint not found (404). Ensure the backend or dev server is running.' : `Submission failed (HTTP ${res.status})`);
+        throw new Error(errorDetail);
       }
     } catch (err) {
       console.error('[Contact Form Error]:', err);
-      setErrorMsg(err.message || 'Could not send message. Please try again or email directly.');
+      const displayError = typeof err?.message === 'string' && err.message !== '[object Object]'
+        ? err.message
+        : 'Could not send message. Please try again or email directly.';
+      setErrorMsg(displayError);
       setStatus(STATUS.ERROR);
       setTimeout(() => setStatus(STATUS.IDLE), 6000);
     }
