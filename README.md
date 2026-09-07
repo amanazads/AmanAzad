@@ -10,7 +10,7 @@
 
 ## ⚡ Overview
 
-This portfolio is built to reflect real-world engineering rigor rather than generic landing page templates. It showcases production deployments, agentic AI architectures, real-time WebSocket systems, and scalable backend services.
+This portfolio is built to reflect real-world engineering rigor rather than generic landing page templates. It covers production deployments, agentic AI architectures, real-time WebSocket systems, backend services, and AI evaluation work — with experimental and test-environment projects labelled as such.
 
 ### Key Highlights
 - **Design System:** Custom tokens for Light (warm off-white) & Dark (near-black) modes with zero flash-of-unstyled-content (anti-FOUC).
@@ -23,10 +23,10 @@ This portfolio is built to reflect real-world engineering rigor rather than gene
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React 18, Vite, Modern CSS & CSS Custom Properties, Lucide Icons
+- **Frontend:** React 19, Vite, Modern CSS & CSS Custom Properties, Lucide Icons, route-level code splitting for below-the-fold sections
 - **Backend & APIs:** Node.js, Express.js, Nodemailer, REST APIs
 - **Core Engineering Domains:**
-  - **AI / LLM:** Python, FastAPI, LangGraph, LangChain, RAG, FAISS, Gemini
+  - **AI / LLM:** Python, FastAPI, LangGraph, LangChain, RAG, ChromaDB / FAISS, Gemini, AI evaluation
   - **Full-Stack & Backend:** React.js, Node.js, Express.js, MongoDB, Redis, Socket.io, JWT
   - **Infrastructure & Cloud:** AWS, Docker, CI/CD, Linux, Git, GitHub
   - **Computer Science:** Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks
@@ -38,14 +38,15 @@ This portfolio is built to reflect real-world engineering rigor rather than gene
 ```
 ├── public/
 │   ├── favicon.svg          # Minimal geometric brand icon
+│   ├── og-image.png         # 1200x630 OpenGraph / Twitter card image
 │   ├── robots.txt           # SEO crawler rules
 │   └── sitemap.xml          # XML sitemap
 ├── src/
 │   ├── components/
 │   │   ├── Hero/            # Hero section with animated system graph & status panel
 │   │   ├── Nav/             # Sticky header with active section spy & theme toggle
-│   │   ├── sections/        # Section modules (Glance, Metrics, Timeline, Projects,
-│   │   │                    #  TechStack, SystemsThinking, GitHub, About, Contact, Footer)
+│   │   ├── sections/        # Section modules (Metrics, Timeline, Projects, SystemsThinking,
+│   │   │                    #  EngineeringGlance, TechStack, GitHub, About, Contact, Footer)
 │   │   └── ui/              # Brand SVG icons and shared UI elements
 │   ├── data/
 │   │   └── portfolio.js     # Single source of truth for portfolio content

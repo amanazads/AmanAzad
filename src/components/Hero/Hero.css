@@ -276,3 +276,69 @@
     display: none;
   }
 }
+
+/* ── 2026 refresh: positioning line, CTA rows, live status ──── */
+.hero__positioning {
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  color: var(--text-tertiary);
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+  max-width: 520px;
+  margin-bottom: var(--space-8);
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--border);
+  animation: fadeUp 0.7s 0.25s var(--ease) both;
+}
+
+.hero__cta--secondary {
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  animation: fadeUp 0.7s 0.4s var(--ease) both;
+}
+
+.hero__cta--secondary .btn {
+  height: 36px;
+  font-size: 0.8125rem;
+  padding: 0 var(--space-4);
+}
+
+.hero__building {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hero__building-what {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.hero__building-where {
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.06em;
+}
+
+.hero__status-key {
+  min-width: 62px;
+}
+
+@media (max-width: 640px) {
+  .hero__positioning {
+    margin-bottom: var(--space-6);
+  }
+
+  .hero__cta .btn,
+  .hero__cta--secondary .btn {
+    min-height: 42px;
+  }
+
+  .hero__cta-primary {
+    flex: 1;
+    justify-content: center;
+  }
+}

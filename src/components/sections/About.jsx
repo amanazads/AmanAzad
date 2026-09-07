@@ -1,66 +1,64 @@
 import { useIntersection } from '../../hooks/useIntersection';
-import { openSource, education } from '../../data/portfolio';
+import { about, education, status } from '../../data/portfolio';
 import './About.css';
-
-const roleIcons = {
-  contribution: '↗',
-  admin: '◆',
-  lead: '▲',
-  community: '○',
-};
 
 export default function About() {
   const [ref, visible] = useIntersection();
 
   return (
-    <section className="section about-section" id="about-detail" ref={ref}>
+    <section className="section about-section" id="about" ref={ref}>
       <div className="container">
-        <div className={`about-grid ${visible ? 'about-grid--visible' : ''}`}>
-          {/* Open Source */}
-          <div className="about-block">
-            <div className="section-label" style={{ marginBottom: 'var(--space-6)' }}>
-              <span className="mono-label">08 — Community</span>
-            </div>
-            <h2 className="section-title">Open Source.</h2>
-            <p className="section-subtitle" style={{ marginBottom: 'var(--space-8)' }}>
-              Engineering contributions. Not just attendance.
-            </p>
+        <div className="section-label">
+          <span className="mono-label">08 — About</span>
+        </div>
 
-            <div className="os-list">
-              {openSource.map((item, i) => (
-                <div key={item.label} className="os-item" style={{ '--delay': `${i * 80}ms` }}>
-                  <div className="os-item__icon">{roleIcons[item.type]}</div>
-                  <div className="os-item__content">
-                    <span className="mono-label os-item__label">{item.label}</span>
-                    <p className="os-item__desc">{item.description}</p>
-                  </div>
-                </div>
+        <div className={`about-grid ${visible ? 'about-grid--visible' : ''}`}>
+          {/* Story */}
+          <div className="about-block">
+            <h2 className="section-title">About me.</h2>
+
+            <div className="about-story">
+              {about.paragraphs.map(p => (
+                <p key={p.slice(0, 32)}>{p}</p>
               ))}
+            </div>
+
+            <div className="about-interests">
+              <span className="mono-label about-interests__label">Currently interested in</span>
+              <div className="about-interests__items">
+                {about.interests.map(i => (
+                  <span key={i} className="tag">{i}</span>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Education */}
+          {/* Right column */}
           <div className="about-block">
-            <div className="section-label" style={{ marginBottom: 'var(--space-6)' }}>
-              <span className="mono-label">09 — Education</span>
+            <div className="about-now">
+              <div className="about-now__header">
+                <span className="status-dot" />
+                <span className="mono-label">Currently</span>
+              </div>
+              <p className="about-now__role">{status.role}</p>
+              <p className="about-now__where">{status.at}</p>
+              <div className="about-now__divider" />
+              <p className="about-now__building">
+                <span className="about-now__building-label">Building</span>
+                {status.building}
+              </p>
             </div>
-            <h2 className="section-title">Background.</h2>
-            <p className="section-subtitle" style={{ marginBottom: 'var(--space-8)' }}>
-              Computer Science foundations driving engineering decisions.
-            </p>
 
             <div className="edu-card">
               <div className="edu-card__header">
-                <div>
-                  <h3 className="edu-card__institution">{education.institution}</h3>
-                  <p className="edu-card__degree">{education.degree}</p>
-                  <span className="mono-label edu-card__period">{education.period}</span>
-                </div>
+                <h3 className="edu-card__institution">{education.institution}</h3>
+                <p className="edu-card__degree">{education.degree}</p>
+                <span className="mono-label edu-card__period">{education.period} · {education.note}</span>
               </div>
               <div className="edu-card__divider" />
               <div className="edu-card__coursework">
                 <span className="mono-label" style={{ marginBottom: '12px', display: 'block' }}>
-                  Relevant Coursework
+                  Relevant coursework
                 </span>
                 <div className="edu-card__courses">
                   {education.coursework.map(c => (

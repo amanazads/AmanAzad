@@ -70,10 +70,10 @@ export default function SystemGraph() {
           return (
             <line
               key={`${a}-${b}`}
-              x1={na.x + 44}
-              y1={na.y + 12}
-              x2={nb.x + 44}
-              y2={nb.y + 12}
+              x1={na.branch === nb.branch ? na.x + 44 : na.x + 88}
+              y1={na.y + (na.branch === nb.branch ? 26 : 13)}
+              x2={nb.branch === na.branch ? nb.x + 44 : nb.x}
+              y2={nb.y + (na.branch === nb.branch ? 0 : 13)}
               className={`system-graph__edge ${isActive ? 'system-graph__edge--active' : ''}`}
               strokeDasharray={na.branch !== nb.branch ? '4 3' : 'none'}
             />

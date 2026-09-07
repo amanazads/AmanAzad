@@ -183,3 +183,36 @@
   .nav__mobile-menu { display: flex; }
   .nav__mobile-panel { display: flex; }
 }
+
+/* ── 2026 refresh: 8-item nav, wider mobile breakpoint ──────── */
+.nav__links {
+  gap: 0;
+}
+
+.nav__link {
+  padding: 0 var(--space-2);
+  font-size: 0.78125rem;
+}
+
+.nav__mobile-panel {
+  max-height: calc(100vh - var(--nav-height));
+  overflow-y: auto;
+}
+
+.nav__mobile-link--active {
+  color: var(--text-primary);
+  background: var(--surface-hover);
+}
+
+.nav__mobile-link {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 1080px) {
+  .nav__links { display: none; }
+  .nav__resume { display: none; }
+  .nav__mobile-menu { display: flex; }
+  .nav__mobile-panel { display: flex; }
+}

@@ -420,3 +420,22 @@ code, pre {
   background: var(--success);
   animation: pulse-dot 2s ease-in-out infinite;
 }
+
+/* ── Skip link (a11y) ────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  padding: var(--space-3) var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.skip-link:focus {
+  left: var(--space-5);
+  top: var(--space-3);
+}

@@ -5,28 +5,28 @@ import { experience } from '../../data/portfolio';
 import './Timeline.css';
 
 export default function Timeline() {
-  const [openId, setOpenId] = useState('ckript');
+  const [openId, setOpenId] = useState(experience[0].id);
   const [ref, visible] = useIntersection();
 
   return (
     <section className="section timeline-section" id="experience" ref={ref}>
       <div className="container">
         <div className="section-label">
-          <span className="mono-label">03 — Deployments</span>
+          <span className="mono-label">02 — Experience</span>
         </div>
-        <h2 className="section-title">Experience.</h2>
-        <p className="section-subtitle">Production engineering. Actual systems. Real users.</p>
+        <h2 className="section-title">Where I have shipped.</h2>
+        <p className="section-subtitle">
+          Startup engineering: real users, real deployments, and the constraints that come with both.
+        </p>
 
         <div className={`timeline ${visible ? 'timeline--visible' : ''}`}>
           {experience.map((exp, i) => (
             <article key={exp.id} className="timeline-item" style={{ '--delay': `${i * 120}ms` }}>
-              {/* Left: Year + line */}
               <div className="timeline-item__rail">
                 <div className="timeline-item__dot" />
                 <div className="timeline-item__line" />
               </div>
 
-              {/* Right: Content */}
               <div className="timeline-item__content">
                 <button
                   className={`timeline-item__header ${openId === exp.id ? 'timeline-item__header--open' : ''}`}
@@ -36,6 +36,7 @@ export default function Timeline() {
                 >
                   <div className="timeline-item__meta">
                     <span className="mono-label timeline-item__type">{exp.type}</span>
+                    {exp.current && <span className="timeline-item__current">Current</span>}
                     <span className="timeline-item__period">
                       <Calendar size={12} />
                       {exp.period}

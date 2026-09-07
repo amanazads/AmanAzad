@@ -6,11 +6,11 @@ import { person } from '../../data/portfolio';
 import './Contact.css';
 
 const opportunities = [
-  'Software Engineering opportunities',
-  'Full-Stack roles',
-  'Backend roles',
-  'AI Engineering roles',
-  'Product / startup engineering',
+  'Software Engineer roles',
+  'Full-stack and backend engineering',
+  'AI / AI application engineering',
+  'Founding engineer roles',
+  'Forward deployed engineering',
 ];
 
 const STATUS = {
@@ -84,7 +84,7 @@ export default function Contact() {
     <section className="section contact-section" id="contact" ref={ref}>
       <div className="container">
         <div className="section-label">
-          <span className="mono-label">10 — Contact</span>
+          <span className="mono-label">09 — Contact</span>
         </div>
 
         <div className={`contact-layout ${visible ? 'contact-layout--visible' : ''}`}>
@@ -95,8 +95,8 @@ export default function Contact() {
               Let's build<br />something useful.
             </h2>
             <p className="contact-desc">
-              Available for roles where engineering rigor matters.
-              I write production code, own systems end-to-end, and care about how things actually work in deployment.
+              I am open to software engineering roles where the work is building and owning real systems.
+              The fastest way to reach me is the form or a direct email — I read everything.
             </p>
 
             <div className="contact-available">
