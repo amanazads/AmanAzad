@@ -18,7 +18,7 @@ export const person = {
   github: 'https://github.com/amanazads',
   githubUser: 'amanazads',
   linkedin: 'https://linkedin.com/in/amanazads',
-  resumeUrl: 'https://drive.google.com/file/d/1x1absDenFokqHMi5QoQDpO0PK4te7wqM/view?usp=share_link',
+  resumeUrl: 'https://drive.google.com/file/d/107XZmVflZUlMi64cLpTP1k_qz3Ou0Ulk/view?usp=sharing',
   location: 'India',
 };
 
